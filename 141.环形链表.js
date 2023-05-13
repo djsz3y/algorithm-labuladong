@@ -5,18 +5,6 @@
  */
 
 // @lc code=start
-/*
- * 1.读懂题目：
- * 
- * 
- * 2.写出思路：
- * 
- * 
- * 3.代码实现： hasCycle
- * 
- * 
- * 4.测试用例：
- */
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
@@ -29,8 +17,16 @@
  * @param {ListNode} head
  * @return {boolean}
  */
-var hasCycle = function(head) {
-    
+var hasCycle = function (head) {
+  // 思路：快指针一个一个走，慢指针每隔一个走，快慢相同说明有环。
+  let fast = (slow = head);
+  while (fast && fast.next) {
+    fast = fast.next.next;
+    slow = slow.next;
+    if (fast === slow) {
+      return true;
+    }
+  }
+  return false;
 };
 // @lc code=end
-
