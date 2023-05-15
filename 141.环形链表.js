@@ -18,7 +18,7 @@
  * @return {boolean}
  */
 var hasCycle = function (head) {
-  // 思路：快指针一个一个走，慢指针每隔一个走，快慢相同说明有环。
+  // 思路：快指针每隔一个走，慢指针一个一个走，快慢相遇有环。
   let fast = (slow = head);
   while (fast && fast.next) {
     fast = fast.next.next;
