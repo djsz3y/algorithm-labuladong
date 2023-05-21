@@ -20,7 +20,7 @@
 var levelOrder = function (root) {
   if (!root) return [];
   let queue = [root];
-  let result = [];
+  let res = [];
   while (queue.length) {
     let len = queue.length;
     let level = [];
@@ -30,8 +30,8 @@ var levelOrder = function (root) {
       node.left && queue.push(node.left);
       node.right && queue.push(node.right);
     }
-    result.push(level);
+    res.push(level);
   }
-  return result;
+  return res;
 };
 // @lc code=end
