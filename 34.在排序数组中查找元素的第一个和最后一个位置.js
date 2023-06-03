@@ -12,8 +12,8 @@
  */
 var searchRange = function (nums, target) {
   const search = function (fromLow) {
-    let low = 0,
-      high = nums.length - 1;
+    let low = 0;
+    let high = nums.length - 1;
     while (low <= high) {
       let mid = low + ((high - low) >> 1);
       if (nums[mid] < target) {
@@ -21,15 +21,24 @@ var searchRange = function (nums, target) {
       } else if (nums[mid] > target) {
         high = mid - 1;
       } else {
+        // 找到 target 的范围区间内的值的时候——
+        // 需要根据 true / false ——
+
+        // - 左移右指针找（target 区间的）左边界，
+        // - 右移左指针找（target 区间的）右边界；
+
+        // 从而找到左右边界；
         if (fromLow) {
-          // 我的值，在我的左区间
+          // 值，在左区间
           if (nums[mid] === nums[mid - 1]) {
+            // 左边还有-相同的-目标值
             high = mid - 1;
           } else {
             return mid;
           }
         } else {
           if (nums[mid] === nums[mid + 1]) {
+            // 右边还有-相同的-目标值
             low = mid + 1;
           } else {
             return mid;
