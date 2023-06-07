@@ -19,7 +19,6 @@ var permute = function (nums) {
       return;
     }
     for (let i = 0; i < nums.length; i++) {
-      // [1,2,3]
       const _nums = [...nums];
       const tmp = _nums.splice(i, 1)[0];
       path.push(tmp);
