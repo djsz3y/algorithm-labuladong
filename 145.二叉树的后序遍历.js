@@ -19,14 +19,14 @@
  */
 var postorderTraversal = function (root) {
   // 回溯算法思想
-  let res = [];
+  const res = []
   const postOrder = function (node) {
-    if (node == null) return;
-    postOrder(node.left);
-    postOrder(node.right);
-    res.push(node.val);
-  };
-  postOrder(root);
-  return res;
-};
+    if (node == null) return
+    postOrder(node.left)
+    postOrder(node.right)
+    res.push(node.val)
+  }
+  postOrder(root)
+  return res
+}
 // @lc code=end
