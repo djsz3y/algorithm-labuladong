@@ -19,14 +19,14 @@
  */
 var inorderTraversal = function (root) {
   // 回溯算法思想
-  let res = [];
+  const res = []
   const inOrder = function (node) {
-    if (node == null) return;
-    inOrder(node.left);
-    res.push(node.val);
-    inOrder(node.right);
-  };
-  inOrder(root);
-  return res;
-};
+    if (node == null) return
+    inOrder(node.left)
+    res.push(node.val)
+    inOrder(node.right)
+  }
+  inOrder(root)
+  return res
+}
 // @lc code=end
