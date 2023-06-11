@@ -19,14 +19,14 @@
  */
 var preorderTraversal = function (root) {
   // 回溯算法思想
-  let res = [];
+  let res = []
   const preOrder = function (node) {
-    if (node == null) return;
-    res.push(node.val);
-    preOrder(node.left);
-    preOrder(node.right);
-  };
-  preOrder(root);
-  return res;
-};
+    if (!node) return
+    res.push(node.val)
+    preOrder(node.left)
+    preOrder(node.right)
+  }
+  preOrder(root)
+  return res
+}
 // @lc code=end
