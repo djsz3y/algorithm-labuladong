@@ -19,14 +19,14 @@
  */
 var hasCycle = function (head) {
   // 思路：快指针每隔一个走，慢指针一个一个走，快慢相遇有环。
-  let fast = (slow = head);
+  let fast = (slow = head)
   while (fast && fast.next) {
-    fast = fast.next.next;
-    slow = slow.next;
+    fast = fast.next.next
+    slow = slow.next
     if (fast === slow) {
-      return true;
+      return true
     }
   }
-  return false;
-};
+  return false
+}
 // @lc code=end
