@@ -28,6 +28,7 @@ var combinationSum = function (candidates, target) {
       return
     }
     for (let i = startIndex; i < candidates.length; i++) {
+      // 剪枝？
       if (candidates[i] + sum > target) continue
       path.push(candidates[i])
       // 在每次回溯时候：
