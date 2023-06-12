@@ -30,4 +30,21 @@ var findContentChildren = function (g, s) {
 
   return result
 }
+
+var findContentChildren = function (g, s) {
+  g = g.sort((a, b) => a - b)
+  s = s.sort((a, b) => a - b)
+
+  // 胃口值
+  let index = 0
+
+  // 循环饼干，看是否能满足胃口，能满足，胃口数 index 加 1
+  for (let i = 0; i < s.length; i++) {
+    if (index < g.length && s[i] >= g[index]) {
+      index++
+    }
+  }
+
+  return index
+}
 // @lc code=end
