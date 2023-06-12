@@ -18,7 +18,7 @@
  * @return {number[][]}
  */
 var levelOrder = function (root) {
-  if(!root) return []
+  if (!root) return []
   let res = []
   let queue = [root]
   while (queue.length) {
