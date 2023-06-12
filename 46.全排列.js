@@ -10,25 +10,25 @@
  * @return {number[][]}
  */
 var permute = function (nums) {
-  const result = [];
-  const path = [];
+  const res = []
+  const path = []
 
   function backtrack(nums) {
     if (!nums.length) {
-      result.push([...path]);
-      return;
+      res.push([...path])
+      return
     }
     for (let i = 0; i < nums.length; i++) {
-      const _nums = [...nums];
-      const tmp = _nums.splice(i, 1)[0];
-      path.push(tmp);
-      backtrack(_nums);
-      path.pop();
+      const _nums = [...nums]
+      const tmp = _nums.splice(i, 1)[0]
+      path.push(tmp)
+      backtrack(_nums)
+      path.pop()
     }
   }
 
-  backtrack(nums);
+  backtrack(nums)
 
-  return result;
-};
+  return res
+}
 // @lc code=end
