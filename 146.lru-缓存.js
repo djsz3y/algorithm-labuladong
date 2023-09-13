@@ -19,10 +19,10 @@ var LRUCache = function (capacity) {
  */
 LRUCache.prototype.get = function (key) {
   if (this.cacheQueue.has(key)) {
-    const result = this.cacheQueue.get(key)
+    const value = this.cacheQueue.get(key)
     this.cacheQueue.delete(key)
-    this.cacheQueue.set(key, result)
-    return result
+    this.cacheQueue.set(key, value)
+    return value
   }
   return -1
 }
@@ -33,12 +33,14 @@ LRUCache.prototype.get = function (key) {
  * @return {void}
  */
 LRUCache.prototype.put = function (key, value) {
+  // 存在？
   if (this.cacheQueue.has(key)) {
     this.cacheQueue.delete(key)
   }
+  // 容量？
   if (this.cacheQueue.size >= this.capacity) {
-    this.cacheQueue.delete(this.cacheQueue.keys().next().value)
     this.cacheQueue.set(key, value)
+    this.cacheQueue.delete(this.cacheQueue.keys().next().value)
   } else {
     this.cacheQueue.set(key, value)
   }
