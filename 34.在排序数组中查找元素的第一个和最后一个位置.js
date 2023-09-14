@@ -23,14 +23,14 @@ var searchRange = function (nums, target) {
     // 3. 左右指针
     let low = 0
     let high = nums.length - 1
-    // 4. while 循环
+    // 4. while循环
     while (low <= high) {
-      // 5. 二分查找 找 mid
+      // 5. 二分查找 mid
       let mid = low + ((high - low) >> 1)
-      // 6. 二分查找 if判
+      // 6. 二分查找 if
       if (nums[mid] < target) {
         low = mid + 1
-      } else if (nums[mid] > target) {
+      } else if (target < nums[mid]) {
         high = mid - 1
       } else {
         // 找到 target 的范围区间内的值的时候——
@@ -41,18 +41,17 @@ var searchRange = function (nums, target) {
 
         // 从而找到左右边界；
 
-        // 7. fromLow 判断——>相同值判断，移动边界
+        // 7. fromLow
         if (fromLow) {
-          // 值，在左区间
+          // 找左边界
           if (nums[mid] === nums[mid - 1]) {
-            // 左边还有-相同的-目标值
             high = mid - 1
           } else {
             return mid
           }
         } else {
+          // 找右边界
           if (nums[mid] === nums[mid + 1]) {
-            // 右边还有-相同的-目标值
             low = mid + 1
           } else {
             return mid
@@ -60,6 +59,7 @@ var searchRange = function (nums, target) {
         }
       }
     }
+    // 8. -1
     return -1
   }
   // 2. return [s..., s...]
