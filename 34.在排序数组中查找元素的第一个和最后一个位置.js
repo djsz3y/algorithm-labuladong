@@ -18,6 +18,7 @@
 // - O(log n) 的算法
 // nums = [5,7,7,8,8,10], target = 8
 var searchRange = function (nums, target) {
+  // 思路：题目要求 and 8 步（1 2 3 4 5 6 7 8）
   // 1. search fromLow
   const search = function (fromLow) {
     // 3. 左右指针
