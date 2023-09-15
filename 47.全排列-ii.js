@@ -9,31 +9,38 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
+// 可包含重复数字的序列 nums
+// 任意顺序
+// 返回不重复的全排列
+// [1,1,2]
+// [[1,1,2],
+//  [1,2,1],
+//  [2,1,1]]
 var permuteUnique = function (nums) {
   nums.sort((a, b) => a - b)
+
+  // 先写回溯公式
   const result = []
   const path = []
 
-  function backtrack(used) {
-    if (nums.length === path.length) {
+  function backtrack(nums) {
+    // condition
+    if (nums.length === 0) {
       result.push([...path])
       return
     }
+
     for (let i = 0; i < nums.length; i++) {
-      if (i > 0 && nums[i] === nums[i - 1] && !used[i - 1]) {
-        continue
-      }
-      if (!used[i]) {
-        used[i] = true
-        path.push(nums[i])
-        backtrack(used)
-        path.pop()
-        used[i] = false
-      }
+      if (i > 0 && nums[i] === nums[i - 1]) continue
+      let _nums = [...nums]
+      let tmp = _nums.splice(i, 1)[0]
+      path.push(tmp)
+      backtrack(_nums)
+      path.pop()
     }
   }
 
-  backtrack([])
+  backtrack(nums)
 
   return result
 }
