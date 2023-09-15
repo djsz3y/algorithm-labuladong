@@ -21,7 +21,7 @@ var postorderTraversal = function (root) {
   // 回溯算法思想
   const res = []
   const postOrder = function (node) {
-    if (node == null) return
+    if (!node) return
     postOrder(node.left)
     postOrder(node.right)
     res.push(node.val)

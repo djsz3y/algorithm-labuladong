@@ -21,7 +21,7 @@ var inorderTraversal = function (root) {
   // 回溯算法思想
   const res = []
   const inOrder = function (node) {
-    if (node == null) return
+    if (!node) return
     inOrder(node.left)
     res.push(node.val)
     inOrder(node.right)
