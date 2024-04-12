@@ -345,4 +345,4 @@ console.log(res2)
 
 # 参考链接
 
-[LABULADONG 的算法网站](https://labuladong.github.io/algo/)
+- [LABULADONG 的算法网站](https://labuladong.online/algo/)
