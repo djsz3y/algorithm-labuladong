@@ -10,29 +10,30 @@
  * @param {number} target
  * @return {number}
  */
+// 题目：
 // 输入: nums = [-1,0,3,5,9,12], target = 9
 // 输出: 4
 // 解释: 9 出现在 nums 中并且下标为 4
+
+// 思路：
+// 左右指针 len-1
+// while 用 <=
+// 中位数防止溢出
+// 据中位对比目标，找到return mid
+// 注意去掉mid区间，mid+1/mid-1
 var search = function (nums, target) {
-  let low = 0,
-    high = nums.length - 1
-  while (low <= high) {
-    /**
-     * // 防止 left & right 太大相加导致溢出
-     * let mid = left + (right - left) / 2;
-     * // JavaScript 向下取整，可是困难到我了，测试用例运行 Run Code 一直不出结果，因为别的语言自动取整了，我要手动取整。
-     * mid = Math.floor(mid);
-     */
-    let mid = low + ((high - low) >> 1)
-    if (nums[mid] < target) {
-      low = mid + 1
-    } else if (target < nums[mid]) {
-      high = mid - 1
-    } else if (nums[mid] === target) {
+  let left = 0,
+    right = nums.length - 1
+  while (left <= right) {
+    let mid = left + ((right - left) >> 1)
+    if (nums[mid] === target) {
       return mid
+    } else if (nums[mid] < target) {
+      left = mid + 1
+    } else if (target < nums[mid]) {
+      right = mid - 1
     }
   }
   return -1
-  // 如果说是找一个位置，return left ;   return right + 1
 }
 // @lc code=end
