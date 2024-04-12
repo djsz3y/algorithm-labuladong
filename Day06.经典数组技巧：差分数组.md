@@ -509,3 +509,7 @@ let res2 = carPooling(trips2, capacity2)
 console.log(res)
 console.log(res2)
 ```
+
+# 参考链接
+
+[LABULADONG 的算法网站](https://labuladong.github.io/algo/)
