@@ -146,8 +146,8 @@ function slidingWindow(s, t) {
 
 ## ⭐9.框架使用方法
 
-> 1. **默写**滑动窗口框架
-> 2. 套模板，**思考并回答 4 个问题**。
+> 1. **思考并回答 4 个问题**
+> 2. **套模板默写滑动窗口框架**。
 
 见例题：76. 最小覆盖子串
 
@@ -248,11 +248,15 @@ while (right < s.length) {
 - `valid` 变量表示窗口中满足 `need` 条件的字符个数，
 - 如果 `valid` 和 `need.size` 的大小相同，则说明窗口已满足条件，已经完全覆盖了串 T。
 
+C++
+
 ```c++
 // 判断左侧窗口是否要收缩
 while (valid == need.size()) {
 }
 ```
+
+JavaScript
 
 ```js
 while (valid == need.size) {}
