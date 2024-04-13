@@ -5,120 +5,85 @@
  */
 
 // @lc code=start
-/*
- * 1.读懂题目：
- * 字符串 s 和 t
- * 返回 s 中涵盖 t 中所有 字符的最小子串，
- * s 中不存在涵盖 t 所有字符的子串，则返回空字符串""
- *
- * 2.写出思路：
- * 滑动窗口算法思想：
- * 字符串 s 中使用双指针的左右指针技巧，左闭右开区间 [left,right) 称为一个窗口
- * 先不断增加 right 指针扩大窗口，直到窗口中的字符串符合要求：包含所有 T 中字符。
- * 停止增加 right ，转而不断增加 left 指针缩小窗口，直到窗口中的字符串不再符合要求：不包含所有 T 中字符。
- * 同时，每增加left，都要更新一轮结果。
- * 重复 2 & 3 步骤，直到 right 到达字符串 s 的尽头。
- * 第 2 步骤寻找可行解，第 3 步骤优化可行解，最终找到最优解，即最短的覆盖子串。
- *
- * 3.代码实现： minWindow
- *
- * 4.测试用例：
- */
-
-/**
- * 滑动窗口算法框架：js版
-function slidingWindow(s, t) {
-  let need = new Map(),
-    window = new Map();
-
-  for (let i = 0; i < t.length; i++) {
-    let c = t[i];
-    !need.has(c) ? need.set(c, 1) : need.set(c, need.get(c) + 1);
-  }
-  let left = 0,
-    right = 0;
-  let valid = 0;
-  while (right < s.length) {
-    // c 是将移入窗口的字符
-    let c = s[right];
-    // 增大窗口
-    right++;
-    // 进行窗口内数据的一系列更新
-    ...
-
-    // debug 输出的位置
-    console.log("window:[%d,%d)\n",left,right)
-
-    // 判断左侧窗口是否要收缩
-    while (window needs shrink) {
-      // d 是将移出窗口的字符
-      let d = s[left];
-      // 缩小窗口
-      left++;
-      // 进行窗口内数据的一系列更新
-      ...
-    }
-  }
-}
- */
-
 /**
  * @param {string} s
  * @param {string} t
  * @return {string}
  */
+// 字符串 s 和 t
+// 返回 s 中涵盖 t 中所有 字符的最小子串，
+// s 中不存在涵盖 t 所有字符的子串，则返回空字符串""
 var minWindow = function (s, t) {
-  let need = new Map(),
-    window = new Map();
+  // 使用 Map 存储字符出现次数
+  const need = new Map(),
+    window = new Map()
 
   for (let i = 0; i < t.length; i++) {
-    let c = t[i];
-    !need.has(c) ? need.set(c, 1) : need.set(c, need.get(c) + 1);
+    const c = t[i]
+    // !need.has(c) ? need.set(c, 1) : need.set(c, need.get(c) + 1)
+    need.set(c, need.has(c) ? need.get(c) + 1 : 1)
   }
+
   let left = 0,
-    right = 0;
-  let valid = 0;
+    right = 0
+  let valid = 0
 
   let start = 0,
-    len = Number.MAX_SAFE_INTEGER; //最大安全整数。
+    len = Number.MAX_SAFE_INTEGER // 最大安全整数。
+
   while (right < s.length) {
-    let c = s[right];
-    right++;
+    const c = s[right] // 记录扩大窗口的当前字符串
+    right++ // 扩大窗口
+
     if (need.has(c)) {
-      !window.has(c) ? window.set(c, 1) : window.set(c, window.get(c) + 1);
+      // 当前字符串 T 里有，也就是 need里有
+      // 就记录在 window 窗口里
+      // !window.has(c) ? window.set(c, 1) : window.set(c, window.get(c) + 1)
+      window.set(c, window.has(c) ? window.get(c) + 1 : 1)
+
       if (window.get(c) === need.get(c)) {
-        valid++;
+        // 需要 c 且窗口里有 c，记录 valid 的值 ++
+        valid++
       }
     }
 
-    while (valid == need.size) {
+    while (valid === need.size) {
+      // 更新最小覆盖子串
+      // 缩小窗口，记录符合条件的最小窗口，即len，
+      // 由于要截取字符串，所以记录最小窗口时的 start = left 和 最小窗口 len = right - left，
       if (right - left < len) {
-        start = left;
-        len = right - left;
+        start = left
+        len = right - left
       }
 
-      let d = s[left];
-      left++;
+      const d = s[left] // 记录缩小窗口的当前字符串
+      left++ // 缩小窗口
 
       if (need.has(d)) {
+        // 判断是否存在于 need 中
         if (window.get(d) === need.get(d)) {
-          valid--;
-        }
-        window.set(d, window.get(d) - 1);
+          // 需要 d 且 窗口里有 d，记录 valid 的值 --
+          valid--
+        } // valid-- 为了跳出循环，达到图中第 ④ 步“直到窗口中的字符串不再符合要求，left 不再继续移动”
+
+        window.set(d, window.get(d) - 1)
       }
     }
   }
-  // console.log(74, start, len);
-  return len === Number.MAX_SAFE_INTEGER ? "" : s.substring(start, start + len);
-};
-// let s = "ADOBECODEBANC",
-//   t = "ABC",
-//   s2 = "a",
-//   t2 = "a",
-//   s3 = "a",
-//   t3 = "aa";
+  // console.log(66, start, len);
+
+  // 最后返回题目所需
+  return len === Number.MAX_SAFE_INTEGER ? '' : s.substring(start, start + len)
+}
+// let s = 'EBBANCF',
+//   t = 'ABC',
+//   s2 = 'a',
+//   t2 = 'a',
+//   s3 = 'a',
+//   t3 = 'aa'
 // let res1 = minWindow(s, t),
 //   res2 = minWindow(s2, t2),
-//   res3 = minWindow(s3, t3);
-// console.log(res1, "-", res2, "-", res3);
+//   res3 = minWindow(s3, t3)
+// console.log(res1)
+// console.log('-', res2, '-', res3)
 // @lc code=end

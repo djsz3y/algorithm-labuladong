@@ -308,16 +308,22 @@ while (valid == need.size) {}
  * @param {string} t
  * @return {string}
  */
+// 字符串 s 和 t
+// 返回 s 中涵盖 t 中所有 字符的最小子串，
+// s 中不存在涵盖 t 所有字符的子串，则返回空字符串""
 var minWindow = function (s, t) {
-  let need = new Map(),
+  // 使用 Map 存储字符出现次数
+  const need = new Map(),
     window = new Map()
 
   for (let i = 0; i < t.length; i++) {
     const c = t[i]
-    !need.has(c) ? need.set(c, 1) : need.set(c, need.get(c) + 1)
+    // !need.has(c) ? need.set(c, 1) : need.set(c, need.get(c) + 1)
+    need.set(c, need.has(c) ? need.get(c) + 1 : 1)
   }
 
-  let left = (right = 0)
+  let left = 0,
+    right = 0
   let valid = 0
 
   let start = 0,
@@ -330,7 +336,8 @@ var minWindow = function (s, t) {
     if (need.has(c)) {
       // 当前字符串 T 里有，也就是 need里有
       // 就记录在 window 窗口里
-      !window.has(c) ? window.set(c, 1) : window.set(c, window.get(c) + 1)
+      // !window.has(c) ? window.set(c, 1) : window.set(c, window.get(c) + 1)
+      window.set(c, window.has(c) ? window.get(c) + 1 : 1)
 
       if (window.get(c) === need.get(c)) {
         // 需要 c 且窗口里有 c，记录 valid 的值 ++
@@ -400,6 +407,10 @@ console.log(res1)
 外部扩大窗口： 2 Map(3) { 'A' => 1, 'B' => 1, 'C' => 1 } 3 7 Map(3) { 'B' => 0, 'A' => 1, 'C' => 1 }
 BANC
 ```
+
+## 5.应用：
+
+在实际应用中，这个函数可以用于解决一些子串匹配的问题，例如在字符串中找到包含所有指定字符的最短子串等。
 
 # 二、字符串排列（567. 字符串的排列）
 
