@@ -359,16 +359,34 @@ var minWindow = function (s, t) {
 ## 4.测试用例：
 
 ```js
-let s = 'ADOBECODEBANC',
+let s = 'EBBANCF',
   t = 'ABC',
   s2 = 'a',
   t2 = 'a',
   s3 = 'a',
   t3 = 'aa'
-let res1 = minWindow(s, t),
-  res2 = minWindow(s2, t2),
-  res3 = minWindow(s3, t3)
-console.log(res1, '-', res2, '-', res3)
+let res1 = minWindow(s, t)
+//  res2 = minWindow(s2, t2),
+//  res3 = minWindow(s3, t3)
+console.log(res1)
+// console.log('-', res2, '-', res3)
+```
+
+### 4.1.测试打印结果：
+
+```js
+没有循环，窗口不变： valid need left right window
+外部扩大窗口： 0 Map(3) { 'A' => 1, 'B' => 1, 'C' => 1 } 0 1 Map(0) {}
+外部扩大窗口： 1 Map(3) { 'A' => 1, 'B' => 1, 'C' => 1 } 0 2 Map(1) { 'B' => 1 }
+外部扩大窗口： 1 Map(3) { 'A' => 1, 'B' => 1, 'C' => 1 } 0 3 Map(1) { 'B' => 2 }
+外部扩大窗口： 2 Map(3) { 'A' => 1, 'B' => 1, 'C' => 1 } 0 4 Map(2) { 'B' => 2, 'A' => 1 }
+外部扩大窗口： 2 Map(3) { 'A' => 1, 'B' => 1, 'C' => 1 } 0 5 Map(2) { 'B' => 2, 'A' => 1 }
+外部扩大窗口： 3 Map(3) { 'A' => 1, 'B' => 1, 'C' => 1 } 0 6 Map(3) { 'B' => 2, 'A' => 1, 'C' => 1 }
+内部缩小窗口： 3 Map(3) { 'A' => 1, 'B' => 1, 'C' => 1 } 1 6 Map(3) { 'B' => 2, 'A' => 1, 'C' => 1 }
+内部缩小窗口： 3 Map(3) { 'A' => 1, 'B' => 1, 'C' => 1 } 2 6 Map(3) { 'B' => 1, 'A' => 1, 'C' => 1 }
+内部缩小窗口： 2 Map(3) { 'A' => 1, 'B' => 1, 'C' => 1 } 3 6 Map(3) { 'B' => 0, 'A' => 1, 'C' => 1 }
+外部扩大窗口： 2 Map(3) { 'A' => 1, 'B' => 1, 'C' => 1 } 3 7 Map(3) { 'B' => 0, 'A' => 1, 'C' => 1 }
+BANC
 ```
 
 # 二、字符串排列（567. 字符串的排列）
