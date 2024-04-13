@@ -556,6 +556,79 @@ var search = function (nums, target) {
 
 ### 4.测试用例：
 
+# 总结
+
+Day08.二分查找算法详解（我的所有二分搜索方法论）
+
+## 【收获 1】
+
+1）今天学习了 **二分查找** 技巧，
+
+2）以后遇到以下类型的题目：
+
+- **[704. 二分查找](https://leetcode.cn/problems/binary-search/description/)**
+- **[35. 搜索插入位置](https://leetcode.cn/problems/search-insert-position/)**
+- **[69. x 的平方根](https://leetcode.cn/problems/sqrtx/)**
+- **[33. 搜索旋转排序数组](https://leetcode.cn/problems/search-in-rotated-sorted-array/)**
+- **[34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/description/)**
+
+3）我可以按照以下的标准化步骤思考：
+
+1. 左右指针，右指针 len-1
+2. -> while 循环用<=
+3. -> 取中位数 mid 防止溢出
+4. -> 中位数值对比目标值判断=、<、>
+5. -> 去除 mid 区间 mid+1/mid-1
+6. -> 根据题目最后返回：704.寻找一个数的位置-1/35.搜索插入位置 high+1/69.求平方根 0
+
+4）其中第 1 步的作用是 **取左右指针，划定范围** ，  
+第 2 步的作用是 **指针循环** ，  
+第 3 步的作用是 **防止溢出** ，  
+第 4 步的作用是 **缩小左右指针窗口范围直至接近目标值** ，  
+第 5 步的作用是 **防止陷入死循环** ，  
+第 6 步的作用是 **返回符合题目的答案** 。
+
+5）其中，33&34 题，要特别画图思考一下：
+
+1. 【前面 704、35、69 题：】只是寻找一个位置，比如：704、35、69；
+2. 【33 题：】要根据 nums[mid] 和 nums[high] 的大小，判断左边有序还是右边有序，
+3. 【33 题：】进而根据有序的那部分判断 target 是否在有序区间内，从而进行左右指针的移动；
+4. 【33 题：】当然，在这之前要先判断 `nums[mid] === target`，再进行上述判断。
+5. 【34 题：】要内部写一个 search 方法：
+6. 【34 题：】寻找一个位置的二分查找方法，与通用一个位置查找的区别是先判断<、>也就是判断两头，
+7. 【34 题：】然后再在 else 里判断根据参数 fromLeft，判断查找左边界还是右边界；
+8. 【34 题：】左右边界就是判断 `nums[mid] === nums[mid-1]`、`nums[mid] === nums[mid+1]`
+
+## 【收获 2】
+
+1）今天学习使用 **二分查找** 技巧解决了 LeetCode 的 704/35/69 题，
+
+2）我之前**第一次做**有一个**误区**：
+
+- 没有 AI 的 JS 代码时，直接按照 labuladong Java 题解写的一直报错，
+
+3）后来发现原来
+
+- **其他语言自动取整，JavaScript 需要手动向下取整**；
+
+4）今天总结了 JS 取中位数的方式：
+① `let mid = left + ((right - left) >> 1)`
+② `let mid = left + Math.floor((right - left) / 2)`  
+③ `let mid = Math.floor(left + (right - left) / 2)`
+
+5）其中，① 效率最好，但 ② ③ 可读性更好，不过如果不考虑 left right 为整数，如果是小数，② 的精度更高；  
+所以结论是取中位数时，使用 ① 或者 ②，不使用 ③ 了。
+
+6）由此，我想如果 left 是小数会怎样，想到 **面试题：为什么 JS `0.1 + 0.2 !== 0.3` ？**，然后输出了一篇文章。
+
+## 【收获 3】
+
+今天输出了一篇打卡文章总结：
+
+- [Day08.二分查找算法详解（我的所有二分搜索方法论）](https://github.com/djsz3y/algorithm-labuladong/blob/master/Day08.二分查找算法详解（我的所有二分搜索方法论）.md)
+  一篇面试题总结：
+- [JavaScript `0.1+0.2 !== 0.3`，为什么？](https://juejin.cn/post/7356772920275796018)
+
 # 参考链接
 
 - [LABULADONG 的算法网站](https://labuladong.online/algo/)

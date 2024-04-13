@@ -320,6 +320,17 @@ const param_3 = obj.sumRegion(
 console.log(param_1, param_2, param_3)
 ```
 
+# 总结
+
+Day05.经典数组技巧：前缀和数组
+
+今天输出了篇打卡文章总结：
+
+- [Day05.经典数组技巧：前缀和数组](https://github.com/djsz3y/algorithm-labuladong/blob/master/Day05.%E7%BB%8F%E5%85%B8%E6%95%B0%E7%BB%84%E6%8A%80%E5%B7%A7%EF%BC%9A%E5%89%8D%E7%BC%80%E5%92%8C%E6%95%B0%E7%BB%84.md)
+
+实际上之前做过，今天就是整理了第一个一维数组，二位数组来不及做，下次吸收。
+一会把一维数组的力扣题提交了并记住。
+
 # 参考链接
 
 - [LABULADONG 的算法网站](https://labuladong.online/algo/)

@@ -343,6 +343,32 @@ console.log(res)
 console.log(res2)
 ```
 
+# 总结
+
+Day07.二维数组的花式遍历
+
+## 【收获 1】
+
+今天学习了 **二维数组的花式遍历** 技巧，以后遇到 [48. 旋转图像](https://leetcode.cn/problems/rotate-image/description/) 类型的题目，我可以按照 **先对角线 镜像翻转 -> 再每一行 反转** 的标准化步骤思考。
+其中第一步的作用是**左上右下对角线，旋转**，第二步的作用是**反转每一行**。
+
+也就是以下思路：
+
+两者思路（顺时针、逆时针 90° 旋转）总结：<span style="color:red;">【重要】</span>
+
+【1】左上右下对角线，旋转
+
+- 根据旋转的规则，定义好 i j 的值，
+- 进行两个 for 循环，交换 i j 和 j i 即可。
+
+【2】反转每一行
+
+## 【收获 2】
+
+今天输出了篇打卡文章总结：
+
+- [Day07.二维数组的花式遍历](https://github.com/djsz3y/algorithm-labuladong/blob/master/Day07.二维数组的花式遍历.md)
+
 # 参考链接
 
 - [LABULADONG 的算法网站](https://labuladong.online/algo/)

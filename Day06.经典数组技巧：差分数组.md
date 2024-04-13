@@ -510,6 +510,45 @@ console.log(res)
 console.log(res2)
 ```
 
+# 总结
+
+Day06.经典数组技巧：差分数组
+
+面试三次失败了，今天这几天没好好学习，决定把面试经验总结总结，算法卡得打了，今天对自己要求不高，复习即可，真是庆幸自己之前刷过，不会很难理解。
+
+今天学习了差分数组技巧，这里先和前缀和做对比：
+
+## 前缀和场景：
+
+- 原始数组不被修改，频繁查询某个区间累加和
+- 前缀和，p[i]代表 n[0...i-1]的所有元素的累加和，想求区间 n[i...j]的累加和，只要计算 p[j+1] - p[i]，不需遍历整个区间求和。
+
+## 差分数组场景：
+
+- 频繁增减原始数组的某个区间的元素
+- 先构造 diff 差分数组：diff[i] = nums[i] - nums[i - 1];
+- 反推原始数组：res[i] = res[i - 1] + diff[i];
+- 构造差分数组 diff，快速增减区间
+- 抽象成一个类，以后就可以直接用啦：差分数组工具类。
+
+---
+
+补充：
+
+## 【收获 1】
+
+今天学习了 **经典数组技巧：差分数组**，以后遇到
+
+- [1109. 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings/description/)
+- [1094. 拼车](https://leetcode.cn/problems/car-pooling/description/)
+  类型的题目，我可以按照 **默写差分数组工具类 -> 对题目进行抽象** 的标准化步骤思考。
+
+## 【收获 2】
+
+今天输出了篇打卡文章总结：
+
+- [Day06.经典数组技巧：差分数组](https://github.com/djsz3y/algorithm-labuladong/blob/master/Day06.经典数组技巧：差分数组.md)
+
 # 参考链接
 
 - [LABULADONG 的算法网站](https://labuladong.online/algo/)
