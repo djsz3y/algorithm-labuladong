@@ -185,11 +185,59 @@ needs 和 window 相当于计数器，分别记录 T 中字符出现次数和「
 
 #### 【首先】，
 
-- 初始化 window 和 need 两个哈希表，记录窗口中的字符和需要凑齐的字符：`need`、`window`、`for(){}`；
+- 初始化 window 和 need 两个哈希表，记录窗口中的字符和需要凑齐的字符：`window`、`need`、for 循环。
+
+C++
+
+```c++
+unordered_map<char, int> need, window;
+for (char c : t) need[c]++;
+```
+
+JavaScript
+
+```js
+// 【首先】，初始化 window 和 need 两个哈希表，记录窗口中的字符和需要凑齐的字符：
+let need = new Map(),
+  window = new Map()
+
+for (let i = 0; i < t.length; i++) {
+  let c = t[i]
+  // 默认为 0，计数存在几次：
+  !need.has(c) ? need.set(c, 1) : need.set(c, need.get(c) + 1)
+}
+```
 
 #### 【然后】，
 
 - 使用 left 和 right 变量初始化窗口的两端，不要忘了，区间 `[left, right)` 左闭右开，所以初始情况下窗口没有包含任何元素：
+
+C++
+
+```c++
+int left = 0, right = 0;
+int valid = 0;
+while (right < s.size()) {
+    // 开始滑动
+}
+```
+
+JavaScript
+
+```js
+// 【然后】，使用 left 和 right 变量初始化窗口的两端，不要忘了，区间 [left, right) 左闭右开，所以初始情况下窗口没有包含任何元素：
+let left = 0,
+  right = 0
+
+let valid = 0
+
+let start = 0,
+  len = Number.MAX_SAFE_INTEGER //最大安全整数。
+
+while (right < s.length) {
+  // 【开始滑动】
+}
+```
 
 #### 【开始滑动】，
 
@@ -199,6 +247,16 @@ needs 和 window 相当于计数器，分别记录 T 中字符出现次数和「
 
 - `valid` 变量表示窗口中满足 `need` 条件的字符个数，
 - 如果 `valid` 和 `need.size` 的大小相同，则说明窗口已满足条件，已经完全覆盖了串 T。
+
+```c++
+// 判断左侧窗口是否要收缩
+while (valid == need.size()) {
+}
+```
+
+```js
+while (valid == need.size) {}
+```
 
 #### ⭐【开始套模板】，
 
@@ -256,10 +314,12 @@ var minWindow = function (s, t) {
   }
   let left = 0,
     right = 0
+
   let valid = 0
 
   let start = 0,
     len = Number.MAX_SAFE_INTEGER //最大安全整数。
+
   while (right < s.length) {
     let c = s[right]
     right++
@@ -591,6 +651,52 @@ let res = lengthOfLongestSubstring(s),
   res3 = lengthOfLongestSubstring(s3)
 console.log(res, res2, res3)
 ```
+
+# 总结
+
+Day09.滑动窗口算法框架
+
+# 【收获 1】
+
+1）今天学习了 **滑动窗口算法框架** 技巧，
+
+2）以后遇到以下类型的题目：
+
+- **[76. 最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/description/)**
+- **[567. 字符串的排列](https://leetcode.cn/problems/permutation-in-string/description/)**
+- **[438. 找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string/description/)**
+- **[3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)**
+
+3）我可以按照以下的标准化步骤思考：
+
+3.1）总结一下就是能够：
+
+> 1. **思考并回答 4 个问题**
+> 2. **套模板默写**滑动窗口框架。
+
+3.2）具体来说就是：
+
+1. 首先，初始化两个哈希表，记录窗口和需要凑齐的字符 window、need、for 循环。
+2. -> 然后，使用 left 和 right 初始化窗口两端，使用左闭右开区间：`left = right = 0`、`while(right < s.length) {...}`。
+3. -> 接下来，while 循环开始滑动 `while (right < s.length) {}`。
+4. -> 其中，valid 表示 window 中满足 need 条件的字符个数；如果 `while(valid === need.size) {...}` ，窗口已满足条件。
+5. -> 继续，套模板，思考并回答 4 个问题：
+6. -> 1. 扩大窗口，更新什么数据？
+7. -> 2. 什么时候 暂停扩大，开始缩小窗口？
+8. -> 3. 缩小窗口，更新什么数据？
+9. -> 4. 期望结果是扩大还是缩小窗口时更新？
+
+4）其中第 1 步的作用是 **记录窗口和需要凑齐的字符** ，  
+第 2 步的作用是 **使用左闭右开区间** ，  
+第 3 步的作用是 **while 循环开始滑动** ，  
+第 4 步的作用是 **记录一些数据，窗口已满足条件时做什么** ，  
+第 5~9 步的作用是 **思考并回答 4 个问题，套模板默写框架代码** 。
+
+# 【收获 2】
+
+今天输出了一篇打卡文章总结：
+
+- [Day09.滑动窗口算法框架](https://github.com/djsz3y/algorithm-labuladong/blob/master/Day09.滑动窗口算法框架.md)
 
 # 参考链接
 
