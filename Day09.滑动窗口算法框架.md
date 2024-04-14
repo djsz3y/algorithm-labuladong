@@ -179,7 +179,7 @@ for(int i = 0; i < s.size(); i++)
 
 needs 和 window 相当于计数器，分别记录 T 中字符出现次数和「窗口」中的相应字符的出现次数。
 
-<img src="./img/Algorithm_Day09_slidingWindow.png" />
+<img src="./imgs/Algorithm_Day09_slidingWindow.png" />
 
 ### ⭐3）滑动窗口算法-使用框架
 
