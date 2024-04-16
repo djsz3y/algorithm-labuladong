@@ -73,7 +73,7 @@
  * }
  * ```
  * 情况 1&2&3 分析完毕，填入框架，简化代码：TreeNode deleteNode(TreeNode root, int key){}
- * 
+ *
  * 2.5.3【注意】：
  * 真正实现删除操作时，
  * 情况3 通过 略复杂的链表操作 交换 root 和 minNode 两个节点：
@@ -82,7 +82,7 @@
  * 因为在实际中 BST 内部数据域时用户自定义的，可以非常复杂，
  * BST 作为数据结构（工具人），操作应该和内部存储的数据域解耦，
  * 所以，我们更倾向于 使用指针操作 交换节点，从而不用关心内部数据。
- * 
+ *
  * 2.5.4【最后总结】：
  * 1. 当前节点对下面子节点有整体影响，通过辅助函数增长参数列表，借助参数传递信息。
  * 2. 扩展一套 BST 代码框架（二叉树递归框架上）：
@@ -115,56 +115,55 @@
  * @param {number} key
  * @return {TreeNode}
  */
-var getMin = function (node) {
-  // BST 最左边就是最小的
-  while (node.left != null) node = node.left;
-  return node;
-};
 var deleteNode = function (root, key) {
-  if (root == null) return null;
+  const getMin = function (node) {
+    // BST 最左边就是最小的
+    while (node.left != null) node = node.left
+    return node
+  }
+
+  if (root == null) return null
   if (root.val == key) {
     //【找到啦，进行删除】
 
-    //情况1&2：这两个 if 正好正确处理
-    if (root.left == null) return root.right;
-    if (root.right == null) return root.left;
+    //【情况 1】和【情况 2】：这两个 if 正好正确处理
+    if (root.left == null) return root.right
+    if (root.right == null) return root.left
 
-    // 处理情况3
-    // 获取右子树最小节点
-    let minNode = getMin(root.right);
-    //删除右子树最小节点
-    root.right = deleteNode(root.right, minNode.val);
-    // 右子树最小节点替换root节点
-    minNode.left = root.left; // 【把root.left给了minNode.left 就相当于：右子树最小节点替换root节点】
-    minNode.right = root.right; // 【同上】
-    root = minNode;
+    // 处理【情况3】
+    let minNode = getMin(root.right) // get root.right 's minNode
+    root.right = deleteNode(root.right, minNode.val) // delete root.right 's minNode.
+    // Replace the root node with the smallest node in the right subtree
+    minNode.left = root.left
+    minNode.right = root.right
+    root = minNode
   } else if (root.val > key) {
     //【去左子树找】
-    root.left = deleteNode(root.left, key);
+    root.left = deleteNode(root.left, key)
   } else if (root.val < key) {
     //【去右子树找】
-    root.right = deleteNode(root.right, key);
+    root.right = deleteNode(root.right, key)
   }
-  return root;
-};
+  return root
+}
 let root = {
     val: 5,
     left: { val: 3, left: { val: 2 }, right: { val: 4 } },
-    right: { val: 6, right: { val: 7 } },
+    right: { val: 6, right: { val: 7 } }
   },
   key = 3,
   root2 = {
     val: 5,
     left: { val: 3, left: { val: 2 }, right: { val: 4 } },
-    right: { val: 6, right: { val: 7 } },
+    right: { val: 6, right: { val: 7 } }
   },
   key2 = 0,
   root3 = {},
-  key3 = 0;
+  key3 = 0
 let res = deleteNode(root, key),
   res2 = deleteNode(root2, key2),
-  res3 = deleteNode(root3, key3);
-console.log(res);
-console.log(res2);
-console.log(res3);
+  res3 = deleteNode(root3, key3)
+console.log(res)
+console.log(res2)
+console.log(res3)
 // @lc code=end
