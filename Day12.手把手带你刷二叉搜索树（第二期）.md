@@ -202,10 +202,14 @@ if (root.left == null && root.right == null) return null
 
 A 只有**一个孩子**，让孩子**接替自己**位置：
 
+排除了情况 1 后：
+
 ```js
-排除了情况1后：
-if(root.left == null) return root.right;
-if(root.right == null) return root.left;
+//【找到啦，进行删除】
+
+//【情况 1】和【情况 2】：这两个 if 正好正确处理
+if (root.left == null) return root.right
+if (root.right == null) return root.left
 ```
 
 #### 3.3.【情况 3】
@@ -233,8 +237,8 @@ if (root.left != null && root.right != null) {
 （详情，见四）
 
 ```js
-function deleteNode(root, key) {...}
 function getMin(node) {...}
+function deleteNode(root, key) {...}
 ```
 
 #### 3.5.【注意】
@@ -249,6 +253,16 @@ function getMin(node) {...}
 - BST 作为数据结构（工具人），**操作**应该**和内部存储的数据域解耦**，
 
 [3]所以，我们更倾向于 **使用指针操作 交换节点**，从而**不用关心内部数据**。
+
+```js
+// 处理【情况3】
+let minNode = getMin(root.right) // get root.right 's minNode
+root.right = deleteNode(root.right, minNode.val) // delete root.right 's minNode.
+// Replace the root node with the smallest node in the right subtree
+minNode.left = root.left
+minNode.right = root.right
+root = minNode
+```
 
 ## ⭐⭐7.打卡文章最后总结：
 
@@ -452,18 +466,16 @@ var deleteNode = function (root, key) {
   if (root.val == key) {
     //【找到啦，进行删除】
 
-    //【情况1&2】：这两个 if 正好正确处理
+    //【情况 1】和【情况 2】：这两个 if 正好正确处理
     if (root.left == null) return root.right
     if (root.right == null) return root.left
 
     // 处理【情况3】
-    // 获取右子树最小节点
-    let minNode = getMin(root.right)
-    //删除右子树最小节点
-    root.right = deleteNode(root.right, minNode.val)
-    // 右子树最小节点替换root节点
-    minNode.left = root.left // 【把root.left给了minNode.left 就相当于：右子树最小节点替换root节点】
-    minNode.right = root.right // 【同上】
+    let minNode = getMin(root.right) // get root.right 's minNode
+    root.right = deleteNode(root.right, minNode.val) // delete root.right 's minNode.
+    // Replace the root node with the smallest node in the right subtree
+    minNode.left = root.left
+    minNode.right = root.right
     root = minNode
   } else if (root.val > key) {
     //【去左子树找】
