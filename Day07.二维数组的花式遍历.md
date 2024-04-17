@@ -112,6 +112,40 @@ var rotate_niShiZhen = function (matrix) {
 }
 ```
 
+### 3.代码实现（回忆时手写的）
+
+```js
+/**
+ * @param {number[][]} matrix
+ * @return {void} Do not return anything, modify matrix in-place instead.
+ */
+var rotate = function (matrix) {
+  const reverse = function (arr) {
+    if (arr.length === 0) return
+    for (let i = 0, j = arr.length - 1; i < j; i++, j--) {
+      const tmp = arr[i]
+      arr[i] = arr[j]
+      arr[j] = tmp
+    }
+    return arr
+  }
+
+  if (matrix.length === 0) return
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < i; j++) {
+      const tmp = matrix[i][j]
+      matrix[i][j] = matrix[j][i]
+      matrix[j][i] = tmp
+    }
+  } // 对角线交换
+
+  for (let i = 0; i < matrix.length; i++) {
+    reverse(matrix[i])
+  }
+  return matrix
+}
+```
+
 ### 4.测试用例：
 
 ```js
