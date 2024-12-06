@@ -34,10 +34,10 @@ var twoSum = function (nums, target) {
   }
   return null
 }
-const res1 = twoSum([2, 7, 11, 15], 9)
-const res2 = twoSum([3, 2, 4], 6)
-const res3 = twoSum([3, 3], 6)
-console.log(res1, res2, res3)
+// const res1 = twoSum([2, 7, 11, 15], 9)
+// const res2 = twoSum([3, 2, 4], 6)
+// const res3 = twoSum([3, 3], 6)
+// console.log(res1, res2, res3)
 // @lc code=end
 
 // @after-stub-for-debug-begin
