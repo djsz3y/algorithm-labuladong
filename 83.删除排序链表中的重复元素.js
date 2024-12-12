@@ -41,19 +41,19 @@
  */
 var deleteDuplicates = function (head) {
   if (head == null) return null
+
   let slow = (fast = head)
+
   while (fast != null) {
-    if (fast.val !== slow.val) {
-      // nums[slow] = nums[fast]
+    if (slow.val !== fast.val) {
       slow.next = fast
-      // slow++
       slow = slow.next
     }
-    // fast++
     fast = fast.next
   }
-  // 链表，所以让 slow 断开与后面重复元素的连接
+
   slow.next = null
+
   return head
 }
 // let head = { val: 1, next: { val: 1, next: { val: 2 } } },

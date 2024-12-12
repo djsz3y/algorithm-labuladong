@@ -55,27 +55,20 @@
  * @param {number[]} nums
  * @return {number}
  */
-var removeDuplicates = function (nums) {
-  // as same as 83
-  if (!nums.length) return 0 // 先判长度
-
-  const length = nums.length
-  // 快慢指针
+var removeDuplicates = function(nums) {
+  if(!nums.length) return 0
+  
   let slow = (fast = 0)
-  // fast 快到最后了，就结束了
-  while (fast < length) {
-    // 判断快慢指针 位置值：
-    //    快慢值 不相等，直接 慢++，快针值给了慢针值 & 之后，让快+1，去找快慢值不同的位置；
-    //    快慢值 相等，直接 快++，去找快慢值不同的位置。
-    if (nums[slow] !== nums[fast]) {
+  
+  while(fast < nums.length) {
+    if(nums[slow] !== nums[fast]) {
       slow++
-      // 维护 nums[0..slow] 无重复
       nums[slow] = nums[fast]
     }
+    
     fast++
   }
-  // console.log(fast,slow)
-  // 长度为索引+1
+  
   return slow + 1
 }
 // let nums = [1, 1, 2];
