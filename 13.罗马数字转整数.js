@@ -14,32 +14,25 @@
  * @return {number}
  */
 var romanToInt = function (s) {
-  // console.time('romanToInt')
-  const map = {
-      I: 1,
-      V: 5,
-      X: 10,
-      L: 50,
-      C: 100,
-      D: 500,
-      M: 1000
-    },
-    mapRoman = Object.keys(map)
+  let map = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000
+  }
+  let _s = s.split('')
 
-  let _s = s.split('') // .reverse()
+  let res = _s.reduceRight((acc, cur, idx, arr) => {
+    if (acc === 0) return map[cur]
 
-  let res = _s.reduceRight((sum, cur, idx, arr) => {
-    if (sum === 0) return 0 + map[cur]
+    if (map[arr[idx + 1]] > map[cur]) return acc - map[cur]
 
-    let cur_idx = mapRoman.findIndex((ite) => ite === arr[idx]),
-      next_idx = mapRoman.findIndex((ite) => ite === arr[idx + 1])
-
-    if (next_idx > cur_idx) return sum - map[cur]
-
-    return sum + map[cur]
+    return acc + map[cur]
   }, 0)
 
-  // console.timeEnd('romanToInt')
   return res
 }
 // @lc code=end
