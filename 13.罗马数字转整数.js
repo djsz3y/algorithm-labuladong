@@ -14,35 +14,33 @@
  * @return {number}
  */
 var romanToInt = function (s) {
-  // 转数组后，反转
-  const strs = s.split('')
-  const reversedStrs = strs.toReversed()
+  // console.time('romanToInt')
+  const romanMap = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000
+  }
+  const romanArr = Object.keys(romanMap)
 
-  // 得到罗马数字映射
-  const lomaToNum_obj = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 }
-  const lomaStrs = Object.keys(lomaToNum_obj)
+  let _s = s.split('') // .reverse()
 
-  // 计算结果
-  let result = reversedStrs.reduce((sum, cur, idx, src) => {
-    let cur_num = lomaToNum_obj[cur]
+  let res = _s.reduceRight((sum, cur, idx, arr) => {
+    if (sum === 0) return 0 + romanMap[cur]
 
-    // 开头不需要比较，开头直接相加
-    // 比较罗马字符串反转后的数组，的上一个和当前罗马数字的前后顺序
-    // 上一个大，总和 sum - cur
-    if (sum !== 0) {
-      let last_loc = lomaStrs.findIndex((lomaStr) => lomaStr === src[idx - 1])
-      let cur_loc = lomaStrs.findIndex((lomaStr) => lomaStr === src[idx])
+    let cur_idx = romanArr.findIndex((ite) => ite === arr[idx]),
+      next_idx = romanArr.findIndex((ite) => ite === arr[idx + 1])
 
-      if (last_loc > cur_loc) {
-        return sum - cur_num
-      }
-    }
-    
-    // 其他情况，总和 sum + cur
-    return sum + cur_num
+    if (next_idx > cur_idx) return sum - romanMap[cur]
+
+    return sum + romanMap[cur]
   }, 0)
 
-  return result
+  // console.timeEnd('romanToInt')
+  return res
 }
 // @lc code=end
 
