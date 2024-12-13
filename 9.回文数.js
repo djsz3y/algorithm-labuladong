@@ -22,7 +22,8 @@ var isPalindrome = function (x) {
     temp = x
   while (temp > 0) {
     let last_number = temp % 10
-    temp = Math.floor(temp / 10)
+    // temp = Math.floor(temp / 10)
+    temp = ~~(temp / 10)
     y = y * 10 + last_number
   }
   return y === x
