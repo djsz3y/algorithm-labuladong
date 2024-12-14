@@ -14,21 +14,20 @@
  * @return {boolean}
  */
 var isValid = function (s) {
-  let left = [] // 栈
-
   let map = {
       ')': '(',
       '}': '{',
       ']': '['
     },
-    mapLeft = Object.values(map) // 左括号列表
+    mapLeft = Object.values(map)
+
+  let left = [] // 栈
 
   for (let c of s) {
     if (mapLeft.includes(c)) {
-      // 是左括号，入栈
+      // c 是左括号
       left.push(c)
     } else {
-      // 是右括号
       if (left.length !== 0 && map[c] === left[left.length - 1]) {
         // 右括号和栈里左括号是对应关系，出栈左括号
         left.pop()
