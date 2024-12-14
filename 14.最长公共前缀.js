@@ -15,14 +15,12 @@
  */
 var longestCommonPrefix = function (strs) {
   // 最长公共前缀
-  // ["flower","flow","flight"]
+  // strs = ["flower","flow","flight"]
   let slow = 0
-  let len = strs.length
   let result = strs[slow]
-
-  while (slow < len) {
+  while (slow < strs.length) {
     let curStr
-    if (strs[slow].length < result.length) {
+    if (result.length > strs[slow].length) {
       curStr = strs[slow]
     } else {
       curStr = result
@@ -33,6 +31,7 @@ var longestCommonPrefix = function (strs) {
     while (j < curStr.length && result.startsWith(curStr.slice(0, j + 1))) {
       j++
     }
+
     result = curStr.slice(0, j)
 
     slow++
