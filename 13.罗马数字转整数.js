@@ -14,7 +14,7 @@
  * @return {number}
  */
 var romanToInt = function (s) {
-  let map = {
+  const map = {
     I: 1,
     V: 5,
     X: 10,
@@ -23,17 +23,18 @@ var romanToInt = function (s) {
     D: 500,
     M: 1000
   }
-  let _s = s.split('')
 
-  let res = _s.reduceRight((acc, cur, idx, arr) => {
-    if (acc === 0) return map[cur]
+  let res = 0
 
-    if (map[arr[idx + 1]] > map[cur]) return acc - map[cur]
+  for (let i = 0; i < s.length - 1; i++) {
+    if (map[s[i + 1]] > map[s[i]]) {
+      res -= map[s[i]]
+    } else {
+      res += map[s[i]]
+    }
+  }
 
-    return acc + map[cur]
-  }, 0)
-
-  return res
+  return res + map[s[s.length - 1]]
 }
 // @lc code=end
 
