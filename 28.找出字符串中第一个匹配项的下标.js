@@ -16,6 +16,7 @@
  */
 var strStr = function (haystack, needle) {
   // 参考链接:https://labuladong.online/algo/practice-in-action/rabinkarp/#rabin-karp-%E7%AE%97%E6%B3%95
+  if (haystack.length < needle.length) return -1
 
   // 字符串匹配暴力解法
   let N = haystack.length,

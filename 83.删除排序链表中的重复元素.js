@@ -40,11 +40,11 @@
  * @return {ListNode}
  */
 var deleteDuplicates = function (head) {
-  if (head == null) return null
+  if (head === null) return null
 
   let slow = (fast = head)
 
-  while (fast != null) {
+  while (fast !== null) {
     if (slow.val !== fast.val) {
       slow.next = fast
       slow = slow.next
@@ -56,12 +56,4 @@ var deleteDuplicates = function (head) {
 
   return head
 }
-// let head = { val: 1, next: { val: 1, next: { val: 2 } } },
-//   head2 = {
-//     val: 1,
-//     next: { val: 1, next: { val: 2, next: { val: 3, next: { val: 3 } } } },
-//   };
-// let res = deleteDuplicates(head),
-//   res2 = deleteDuplicates(head2);
-// console.log(res, res2);
 // @lc code=end

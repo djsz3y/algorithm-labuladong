@@ -55,25 +55,20 @@
  * @param {number[]} nums
  * @return {number}
  */
-var removeDuplicates = function(nums) {
-  if(!nums.length) return 0
-  
+var removeDuplicates = function (nums) {
+  // 原地删除
+  if (nums.length === 0) return 0
+
   let slow = (fast = 0)
-  
-  while(fast < nums.length) {
-    if(nums[slow] !== nums[fast]) {
+
+  while (fast < nums.length) {
+    if (nums[slow] !== nums[fast]) {
       slow++
       nums[slow] = nums[fast]
     }
-    
     fast++
   }
-  
+
   return slow + 1
 }
-// let nums = [1, 1, 2];
-// let res = removeDuplicates(nums);
-// let nums2 = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
-// let res2 = removeDuplicates(nums2);
-// console.log(res, nums, res2, nums2);
 // @lc code=end

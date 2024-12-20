@@ -14,6 +14,7 @@
  * @return {boolean}
  */
 var isValid = function (s) {
+  // 有效的括号
   let map = {
       ')': '(',
       '}': '{',
@@ -21,15 +22,13 @@ var isValid = function (s) {
     },
     mapLeft = Object.values(map)
 
-  let left = [] // 栈
+  let left = []
 
   for (let c of s) {
     if (mapLeft.includes(c)) {
-      // c 是左括号
       left.push(c)
     } else {
       if (left.length !== 0 && map[c] === left[left.length - 1]) {
-        // 右括号和栈里左括号是对应关系，出栈左括号
         left.pop()
       } else {
         return false
