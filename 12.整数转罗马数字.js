@@ -47,20 +47,15 @@ var intToRoman = function (num) {
     3000: 'MMM'
   }
 
-  let res = ''
-  let temp = num
-  let len = (temp + '').length
+  let temp = num,
+    res = ''
 
-  // 注意 要定义 len
   while (temp > 0) {
-    let _p = Math.pow(10, len - 1)
-    let _z = ~~(temp / _p) // 注意向下取整
-    temp = temp % _p
-
-    // console.log(60, len, _p, _z, temp, _z * _p, map[_z * _p])
-    if (_z > 0) res += map[_z * _p] // _z > 0 排除 undefined 情况
-
-    len--
+    let _n = (temp + '').length - 1,
+      _z = Math.pow(10, _n), // 1000
+      _b = ~~(temp / _z) // 3749 / 1000 -> 3
+    temp = temp % _z // 3749 % 1000 -> 749
+    res += map[_b * _z] // 3 * 1000
   }
 
   return res

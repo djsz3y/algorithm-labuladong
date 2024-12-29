@@ -18,14 +18,17 @@ var isPalindrome = function (x) {
   // 思路：while 循环 对 10 取余，对 10 取整
   // 变量：临时参数 temp ，x 对应的回文整数 y
   if (x < 0) return false
-  let y = 0,
-    temp = x
+
+  let temp = x
+  let y = 0
+
   while (temp > 0) {
     let last_number = temp % 10
     // temp = Math.floor(temp / 10)
     temp = ~~(temp / 10)
     y = y * 10 + last_number
   }
+
   return y === x
 }
 // @lc code=end
