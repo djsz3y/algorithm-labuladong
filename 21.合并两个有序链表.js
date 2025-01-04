@@ -4,6 +4,9 @@
  * [21] 合并两个有序链表
  */
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -28,39 +31,53 @@
  *
  * 4.测试用例：
  */
+class ListNode {
+  constructor(val, next) {
+    this.val = val === undefined ? 0 : val
+    this.next = next === undefined ? null : next
+  }
+}
 /**
  * @param {ListNode} list1
  * @param {ListNode} list2
  * @return {ListNode}
  */
 var mergeTwoLists = function (list1, list2) {
+  // 目标：小值连到 p 上。
+
+  // 虚拟头节点
   let dummy = new ListNode(-1),
-    p = dummy;//虚拟头结点 dummy 赋值给 p
+    // 通过 p 指针连接两个比较过大小的值的链表。
+    p = dummy
+
   let p1 = list1,
-    p2 = list2;
-  while (p1 != null && p2 != null) { // p1 p2 都不是 null 和 undefined
-    if (p1.val > p2.val) { // 比较 p1,p2 大小 头结点
-      p.next = p2; // p2 小，p2 给结果链表 p
-      p2 = p2.next; // p2 指向下一个即 p2 = p2.next
-    } else { // 否则操作 p1（同 p2 ）
-      p.next = p1;
-      p1 = p1.next;
-    } // 谁小操作谁
-    p = p.next; // p 被给了新的，p 去下一个
+    p2 = list2
+
+  while (p1 !== null && p2 !== null) {
+    // 谁小操作谁
+    if (p1.val > p2.val) {
+      // p2.val 小，让 p2 连到 p.next 并后移
+      p.next = p2
+      p2 = p2.next
+    } else {
+      // p1.val 小，同理
+      p.next = p1
+      p1 = p1.next
+    }
+    // 前面让小的连上了 p，所以这里让 p 后移，所以就形成了 dummy 链表
+    p = p.next
   }
-  if (p1 != null) {
-    p.next = p1;
+
+  // 如果 p1 、 p2 还有剩余，继续连上
+  if (p1 !== null) {
+    p.next = p1
   }
-  if (p2 != null) {
-    p.next = p2;
-  } // 把剩余非空连到 p 的下一个
-  return dummy.next; // p是 dummy 的指针，p往下走（不断前进），dummy链表就形成了。dummy 是 -1，so return dummy.next。
-};
-class ListNode {
-  constructor(val, next) {
-    this.val = val === undefined ? 0 : val;
-    this.next = next === undefined ? null : next;
+  if (p2 !== null) {
+    p.next = p2
   }
+
+  // dummy 包含虚拟头节点，所以返回 dummy.next
+  return dummy.next
 }
 // let l1 = [1, 2, 4],
 //   l2 = [1, 3, 4];
