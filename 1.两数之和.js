@@ -14,9 +14,9 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-  // 找出 和为目标值 target 的 两个整数，并返回数组下标
-  // [2, 7, 11, 15]
-  // 7 2 -2 -6
+  // [2,7,11,15]
+  // 7, 2, -2, -6
+
   let valToIndex = new Map()
   for (let i = 0; i < nums.length; i++) {
     let need = target - nums[i]

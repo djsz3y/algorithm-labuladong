@@ -4,6 +4,9 @@
  * [35] 搜索插入位置
  */
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 /**
  * @param {number[]} nums
@@ -14,22 +17,20 @@
 // 找到目标值，返回索引
 // 不存在，返回它被按顺序插入的位置。
 var searchInsert = function (nums, target) {
-  // 二分查找
-  let low = 0,
-    high = nums.length - 1
-  while (low <= high) {
-    // let mid = left + (right - left) / 2;
-    // mid = Math.floor(mid);
-    let mid = low + ((high - low) >> 1)
+  // 寻找排序数组中的目标值，并返回索引
+  // 目标值不存在于数组中，返回它将会被按顺序插入的位置
+  let left = 0,
+    right = nums.length - 1
+  while (left <= right) {
+    let mid = left + ((right - left) >> 1)
     if (nums[mid] < target) {
-      low = mid + 1
+      left = mid + 1
     } else if (target < nums[mid]) {
-      high = mid - 1
+      right = mid - 1
     } else if (nums[mid] === target) {
       return mid
     }
   }
-  return high + 1
-  // 如果说是找一个位置，return left ;   return right + 1
+  return right + 1
 }
 // @lc code=end
