@@ -21,13 +21,11 @@ var strStr = function (haystack, needle) {
   // 字符串匹配暴力解法
   let N = haystack.length,
     L = needle.length
-
   for (let i = 0; i + L <= N; i++) {
     if (haystack.substring(i, i + L) === needle) {
       return i
     }
   }
-
   return -1
 }
 // @lc code=end

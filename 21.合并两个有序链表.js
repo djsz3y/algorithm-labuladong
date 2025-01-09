@@ -49,7 +49,6 @@ var mergeTwoLists = function (list1, list2) {
   let dummy = new ListNode(-1),
     // 通过 p 指针连接两个比较过大小的值的链表。
     p = dummy
-
   let p1 = list1,
     p2 = list2
 
@@ -69,26 +68,9 @@ var mergeTwoLists = function (list1, list2) {
   }
 
   // 如果 p1 、 p2 还有剩余，继续连上
-  if (p1 !== null) {
-    p.next = p1
-  }
-  if (p2 !== null) {
-    p.next = p2
-  }
-
+  if (p1 !== null) p.next = p1
+  if (p2 !== null) p.next = p2
   // dummy 包含虚拟头节点，所以返回 dummy.next
   return dummy.next
 }
-// let l1 = [1, 2, 4],
-//   l2 = [1, 3, 4];
-// let l3 = [],
-//   l4 = [];
-// let l5 = [],
-//   l6 = [0];
-
-// let res1 = mergeTwoLists(l1, l2),
-//   res2 = mergeTwoLists(l3, l4),
-//   res3 = mergeTwoLists(l5, l6);
-
-// console.log(res1, res2, res3);
 // @lc code=end

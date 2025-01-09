@@ -14,7 +14,6 @@
  * @return {string}
  */
 var intToRoman = function (num) {
-  // 数字输出罗马数字
   const map = {
     1: 'I',
     2: 'II',
@@ -47,20 +46,15 @@ var intToRoman = function (num) {
     2000: 'MM',
     3000: 'MMM'
   }
-
-  let temp = num
+  let temp = num // 3794
   let res = ''
   while (temp > 0) {
-    let _n = (temp + '').length - 1 // 3
-    let _p = Math.pow(10, _n) // 1000
-    let _t = ~~(temp / _p)
-
-    let _z = _t * _p // 3000
-    res += map[_z]
-
+    let _n = (temp + '').length - 1, // 3
+      _p = Math.pow(10, _n), // 1000
+      _t = ~~(temp / _p) // 3 向下取整
     temp = temp % _p
+    res += map[_t * _p]
   }
-
   return res
 }
 // @lc code=end

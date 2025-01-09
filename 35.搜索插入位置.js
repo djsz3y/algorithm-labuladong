@@ -19,6 +19,7 @@
 var searchInsert = function (nums, target) {
   // 寻找排序数组中的目标值，并返回索引
   // 目标值不存在于数组中，返回它将会被按顺序插入的位置
+  // 二分
   let left = 0,
     right = nums.length - 1
   while (left <= right) {
@@ -31,6 +32,7 @@ var searchInsert = function (nums, target) {
       return mid
     }
   }
-  return right + 1
+  return left
+  // return right + 1
 }
 // @lc code=end

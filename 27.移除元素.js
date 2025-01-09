@@ -31,6 +31,7 @@
  * @return {number}
  */
 var removeElement = function (nums, val) {
+  // [0, 1, 2, 3, 2, 2, 4] 2
   let slow = (fast = 0)
   while (fast < nums.length) {
     if (nums[fast] !== val) {
@@ -41,10 +42,4 @@ var removeElement = function (nums, val) {
   }
   return slow
 }
-// let nums = [3,2,2,3], val = 3
-// let nums2 = [0,1,2,2,3,0,4,2], val2 = 2
-// let res = removeElement(nums,val)
-// let res2 = removeElement(nums2,val2)
-// console.log(nums,nums2)
-// console.log(res,res2)
 // @lc code=end
