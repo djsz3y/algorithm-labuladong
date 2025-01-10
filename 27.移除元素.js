@@ -32,6 +32,9 @@
  */
 var removeElement = function (nums, val) {
   // [0, 1, 2, 3, 2, 2, 4] 2
+  //  0  1  3  4 nums
+  //  0  1  2  3  4 slow
+  //  0  1  2  3  4  5  6  7 fast
   let slow = (fast = 0)
   while (fast < nums.length) {
     if (nums[fast] !== val) {
