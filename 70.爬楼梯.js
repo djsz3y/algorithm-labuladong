@@ -16,13 +16,13 @@
 // n 阶到达楼顶
 // 每次爬 1 或 2 个台阶，多少种不同的方法
 var climbStairs = function (n) {
+  // 动态规划
   // 备忘录
   let memo = new Array(n + 1).fill(0)
 
   // 定义：爬到第 n 级
   function dp(n) {
     if (n <= 2) return n
-
     if (memo[n] > 0) return memo[n]
 
     // 状态转移方程

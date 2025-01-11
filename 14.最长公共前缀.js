@@ -15,28 +15,26 @@
  */
 var longestCommonPrefix = function (strs) {
   // 最长公共前缀
-  // strs = ["flower","flow","flight"]
-  let result = strs[0]
+  // ['longest', 'locommon', 'lo']
+  if (!strs.length) return ''
+  let res = strs[0]
   for (let i = 0; i < strs.length; i++) {
     // 找最小字符串
     let curStr = ''
-    if (result.length > strs[i].length) {
+    if (res.length > strs[i].length) {
       curStr = strs[i]
     } else {
-      curStr = result
-      result = strs[i]
+      curStr = res
+      res = strs[i]
     }
-    // console.log(i, strs[i], curStr, result)
 
     let j = 0
-    while (j < curStr.length && result.startsWith(curStr.substring(0, j + 1))) {
+    while (j < curStr.length && res.startsWith(curStr.substring(0, j + 1))) {
       j++
     }
-    result = curStr.substring(0, j)
-    // console.log(j, result)
+    res = curStr.substring(0, j)
   }
-
-  return result
+  return res
 }
 // @lc code=end
 
