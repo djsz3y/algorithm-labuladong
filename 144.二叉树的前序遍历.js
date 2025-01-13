@@ -4,6 +4,9 @@
  * [144] 二叉树的前序遍历
  */
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 /**
  * Definition for a binary tree node.
@@ -18,9 +21,8 @@
  * @return {number[]}
  */
 var preorderTraversal = function (root) {
-  // 回溯算法思想
-  let res = []
-  const preOrder = function (node) {
+  const res = []
+  const preOrder = (node) => {
     if (!node) return
     res.push(node.val)
     preOrder(node.left)
