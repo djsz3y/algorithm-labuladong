@@ -17,7 +17,7 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function (nums1, m, nums2, n) {
-  // nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+  // 倒序 循环，合并两个非递减序列数组数组，到第一个数组中
   let i = m - 1,
     j = n - 1
   let p = nums1.length - 1
