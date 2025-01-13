@@ -25,7 +25,7 @@ var isValid = function (s) {
     if (mapLeft.includes(c)) {
       left.push(c)
     } else {
-      if (left.length && map[c] === left[left.length - 1]) {
+      if (map[c] === left[left.length - 1]) {
         left.pop()
       } else {
         return false
