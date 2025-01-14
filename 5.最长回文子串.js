@@ -14,6 +14,7 @@
  * @return {string}
  */
 var longestPalindrome = function (s) {
+  // 'ababc' 'aba' 'bab'
   const palindrome = function (s, l, r) {
     while (l >= 0 && r < s.length && s[l] === s[r]) {
       l--
@@ -21,7 +22,6 @@ var longestPalindrome = function (s) {
     }
     return s.substring(l + 1, r)
   }
-
   let res = ''
   for (let i = 0; i < s.length; i++) {
     let s1 = palindrome(s, i, i)

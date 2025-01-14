@@ -14,8 +14,8 @@
  * @return {number}
  */
 var lengthOfLastWord = function (s) {
+  // 最后一个单次的长度
   s = s.trim()
-
   let length = 0
   for (let i = s.length - 1; i >= 0; i--) {
     if (s[i] !== ' ') {
@@ -24,7 +24,6 @@ var lengthOfLastWord = function (s) {
       break
     }
   }
-
   return length
 }
 // @lc code=end

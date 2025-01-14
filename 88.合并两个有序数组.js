@@ -17,10 +17,12 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function (nums1, m, nums2, n) {
-  // 倒序 循环，合并两个非递减序列数组数组，到第一个数组中
+  // 合并两个有序数组
+  //    倒序 循环，到第一个数组中
   let i = m - 1,
     j = n - 1
   let p = nums1.length - 1
+  // 倒序循环
   while (i >= 0 && j >= 0) {
     // 谁大操作谁
     if (nums1[i] > nums2[j]) {
@@ -36,6 +38,7 @@ var merge = function (nums1, m, nums2, n) {
   }
   // 可能其中一个数组的指针走到尽头了，另一个还没走完
   // 本身往 nums1 里放元素，所以只需考虑 nums2 是否剩余元素即可。
+  // nums2 长
   while (j >= 0) {
     nums1[p] = nums2[j]
     j--

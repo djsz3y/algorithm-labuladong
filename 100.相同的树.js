@@ -24,6 +24,7 @@
  */
 var isSameTree = function (p, q) {
   // 二叉树之分解问题的思想
+  //    - 检验相同的树，在结构上相同，并且节点具有相同的值
   if (p === null && q === null) return true
   if (p === null || q === null) return false
   if (p.val !== q.val) return false
