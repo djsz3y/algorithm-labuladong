@@ -21,8 +21,9 @@
  * @return {number[]}
  */
 var preorderTraversal = function (root) {
+  // 回溯算法思想
   const res = []
-  const preOrder = (node) => {
+  const preOrder = function (node) {
     if (!node) return
     res.push(node.val)
     preOrder(node.left)
